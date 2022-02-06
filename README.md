@@ -13,20 +13,20 @@ Snyk Code and Snyk Open Source together provide easy-to-use, fast and accurate S
 
 In this hands-on workshop we will achieve the following:
 
-* [Step 1 - Fork the highly vulnerable Juice-Shop Application]()
-* [Step 2 - Configure GitHub Integration]()
+* [Step 1 - Fork the highly vulnerable Juice-Shop Application](#step-1---fork-the-highly-vulnerable-juice-shop-application)
+* [Step 2 - Configure GitHub Integration](#step-2---configure-github-integration)
 
 Snyk Code steps
 
-* [Step 3 Enable Snyk Code within Snyk App]()
-* [Step 4 Add project to find Snyk Code Vulnerabilities]()
-* [Step 5 Run a Snyk Code CLI Test]()
+* [Step 3 Enable Snyk Code within Snyk App](#)
+* [Step 4 Add project to find Snyk Code Vulnerabilities](#)
+* [Step 5 Run a Snyk Code CLI Test](#)
 
 Snyk Open Source steps
 
-* [Step 6 Find vulnerabilities]()
-* [Step 7 Fix using a Pull Request]()
-* [Step 8 Run a Snyk CLI Test]()
+* [Step 6 Find vulnerabilities](#)
+* [Step 7 Fix using a Pull Request](#)
+* [Step 8 Run a Snyk CLI Test](#)
 
 # Workshop Steps
 
@@ -124,7 +124,7 @@ In addition to the Snyk App UI we also have, snyk - CLI a build-time tool to fin
 
 1. Install Page - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
 2. Prebuilt Binaries - https://github.com/snyk/snyk/releases
-3. 
+
 _Note: Please ensure you have the latest version of the Snyk CLI installed a version equal to or greater than the version below_
 
 ```bash
@@ -217,7 +217,7 @@ Snyk Open Source is a Software Composition Analysis took which seamlessly and pr
 
 ## Step 6 - Find vulnerabilities
 
-* Since Juice-Shop project had been imported in the Step 3, you should see a "**package.json**" project as shown below.
+* Since Juice-Shop project had been imported in the Step 3, you should see multiple "**package.json**" projects as shown below.
 
 ![alt tag](https://i.ibb.co/d4Qb3TV/Snyk-OS-vuln.png)
 
