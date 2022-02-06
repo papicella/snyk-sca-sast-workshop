@@ -32,8 +32,6 @@ Snyk Open Source steps
 
 _Note: It is assumed your using a mac for these steps, but it should also work on Windows or linux with some modifications to the scripts potentially_
 
-<br />
-
 ## Step 1 - Fork the highly vulnerable Juice-Shop Application
 
 _NOTE: You may have already forked the Juice-Shop application in that case go ahead and skip this step_
@@ -61,14 +59,12 @@ First we need to connect Snyk to GitHub so we can import our Repository. Do so b
 ![alt tag](https://i.ibb.co/bPqqybM/snyk-starter-open-source-1.png)
 
 <br />
-<br />
-<br />
 
 # Snyk Code Steps
 
 Snyk Code is developer-first, embedding SAST as part of the development process, enabling developers to build software securely during development, not trying to find and fix problems after the code is compiled. Snyk Code works in the IDEs and SCMs developers use to build and review software and provides fast, actionable, meaningful results to fix issues in real-time
 
-## 3️⃣ - Step 3 - Enable Snyk Code within Snyk App
+## Step 3 - Enable Snyk Code within Snyk App
 
 * Click on the "**Settings**" button on the top most navigation bar as shown below
 
@@ -78,7 +74,7 @@ Snyk Code is developer-first, embedding SAST as part of the development process,
 
 ![alt tag](https://i.ibb.co/bP2FpGx/snyk-code-2.png)
 
-## 4️⃣ - Step 4 - Add project to find Snyk Code Vulnerabilities
+## Step 4 - Add project to find Snyk Code Vulnerabilities
 
 Now that Snyk is connected to your GitHub Account, import the Forked Repo "**juice-shop**" into Snyk as a Project.
 
@@ -122,7 +118,76 @@ Snyk products all provide a developer-friendly experience, so Snyk Code helps de
 
 ![alt tag](https://i.ibb.co/M21xScH/Cross-site-scripting-Fix-Analysis.png)
 
-## To Go Further with Snyk Code - Snyk Code workshop
+## Step 5 Run a Snyk Code CLI Test
+
+TODO://
+
+### To Go Further with Snyk Code - Snyk Code workshop
+
+Finally, to go further, feel free to look at this workshop https://github.com/papicella/snyk-code-workshop where additional steps are available (Snyk Code CLI Test and Snyk Code Test using VS Code)
+
+# Snyk Open Source Steps
+
+Snyk Open Source is a Software Composition Analysis took which seamlessly and proactively finds, prioritizes and fixes vulnerabilities and license violations in open source dependencies
+
+## Step 6 - Find vulnerabilities
+
+* Since Juice-Shop project had been imported in the Step 3, you should see a "**package.json**" project as shown below.
+
+![alt tag](https://i.ibb.co/d4Qb3TV/Snyk-OS-vuln.png)
+
+* Click on the second "**package.json**" to view our Open Source scan results
+
+First let's explore the Juice-Shop project risks by clicking on the "**package.json**" file which is the manifest file where the open source dependencies are declared.
+
+![alt tag](https://i.ibb.co/ZhN6tXY/Package-json-view.png)
+
+Thenk go back on the Snyk WebUI and let's have a look at the vulnerabilities.
+
+For each Vulnerability, Snyk displays the following ordered by our [Proprietary Priority Score](https://docs.snyk.io/features/fixing-and-prioritizing-issues/starting-to-fix-vulnerabilities/snyk-priority-score) :
+1. The module that introduced it and, in the case of transitive dependencies, its direct dependency,
+1. Details on the path and proposed Remediation, as well as the specific vulnerable functions
+1. Overview
+1. Exploit maturity
+1. Links to CWE, CVE and CVSS Score
+1. Plus more ...
+
+![alt tag](https://i.ibb.co/xq2GWCs/Snyk-OS-vuln.png)
+
+## Step 7 - Fix using a Pull Request
+
+When using the GitHub integration, and if a fix is available, Snyk can automatically upgrade the vulnerable dependency to a non-vulnerable version through a Pull Request.
+
+* Click on "**Fix this vulnerability**" for "**Prototype Pollution**" issue as shown below
+
+![alt tag](https://i.ibb.co/9NHPmn2/Snyk-OS-Fix-this-vuln.png)
+
+* On the next screen, you'll be able to confirm the issue to fix with this PR. Click "**Open a Fix PR**"
+
+![alt tag](https://i.ibb.co/y5PHhhT/Vulns-to-fix-pr-view.png)
+![alt tag](https://i.ibb.co/p2Lx5Rd/Open-fix-pr-button.png)
+
+* Once it's ready, you'll be taken to the PR in GitHub, where you can review the changes in the file diff view:
+
+Snyk integrates with your preferred Git repository to scan your manifest files for any new code and potential vulnerabilities whenever you submit a pull request (PR), protecting the security of your code before you ever merge it with the main branch
+
+![alt tag](https://i.ibb.co/ySc72zN/Fix-PR-Github.png)
+
+* We see that CI checks completed successfully, assuring us we didn't introduce a breaking change
+
+![alt tag](https://i.ibb.co/BzrNHvg/Files-changed-Github.png)
+
+* Optionally now, go ahead and merge the PR!
+* Back in Snyk we can appreciate that our package.json file has 1 less Critical Severity Vulnerability if you did fix it
+
+### Step 8 Run a Snyk CLI Test
+
+TODO://
+
+### To Go Further with Snyk Open Source - Snyk Open Source workshop
+
+Finally, to go further, feel free to look at this workshop https://github.com/papicella/snyk-open-source-workshop where additional steps are guided (Testing using the Snyk CLI and the IDE Integration with VS Code)
+
 
 
 Thanks for attending and completing this workshop
@@ -130,7 +195,8 @@ Thanks for attending and completing this workshop
 ![alt tag](https://i.ibb.co/7tnp1B6/snyk-logo.png)
 
 <hr />
-Jenny Granja [jennifer.granja at snyk.io] is a Solution Engineer at Snyk APJ
+Jenny Granja [jennifer.granja at snyk.io] is a Solution Engineer at Snyk APJ 
+<br/>
 Pas Apicella [pas at snyk.io] is a Principal Solution Engineer at Snyk APJ
 
 
