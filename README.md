@@ -18,15 +18,15 @@ In this hands-on workshop we will achieve the following:
 
 Snyk Code steps
 
-* [Step 3 Enable Snyk Code within Snyk App](#)
-* [Step 4 Add project to find Snyk Code Vulnerabilities](#)
-* [Step 5 Run a Snyk Code CLI Test](#)
+* [Step 3 - Enable Snyk Code within Snyk App](#step-3---enable-snyk-code-within-snyk-app)
+* [Step 4 - Add project to find Snyk Code Vulnerabilities](#step-4---add-project-to-find-snyk-code-vulnerabilities)
+* [Step 5 - Run a Snyk Code CLI Test](#step-5---run-a-snyk-code-cli-test)
 
 Snyk Open Source steps
 
-* [Step 6 Find vulnerabilities](#)
-* [Step 7 Fix using a Pull Request](#)
-* [Step 8 Run a Snyk CLI Test](#)
+* [Step 6 - Find vulnerabilities](#step-6---find-vulnerabilities)
+* [Step 7 - Fix using a Pull Request](#step-7---fix-using-a-pull-request)
+* [Step 8 - Run a Snyk CLI Test](#step-8---run-a-snyk-cli-test)
 
 # Workshop Steps
 
@@ -116,7 +116,7 @@ Snyk products all provide a developer-friendly experience, so Snyk Code helps de
 
 ![alt tag](https://i.ibb.co/M21xScH/Cross-site-scripting-Fix-Analysis.png)
 
-## Step 5 Run a Snyk Code CLI Test
+## Step 5 - Run a Snyk Code CLI Test
 
 In addition to the Snyk App UI we also have, snyk - CLI a build-time tool to find & fix known vulnerabilities in open-source dependencies, IaC configuration files and SAST scans on the source code files itself (Snyk Code).
 
@@ -265,7 +265,7 @@ Snyk integrates with your preferred Git repository to scan your manifest files f
 * Optionally now, go ahead and merge the PR!
 * Back in Snyk we can appreciate that our package.json file has 1 less Critical Severity Vulnerability if you did fix it
 
-### Step 8 Run a Snyk CLI Test
+### Step 8 - Run a Snyk CLI Test
 
 In addition to the Snyk App UI we also have, snyk - CLI and build-time tool to find & fix known vulnerabilities in open-source dependencies. The CLI is what is used in DevOps pipelines to introduce Application Security Scans as part of that workflow to push applications into production.
 
