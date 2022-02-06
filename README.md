@@ -58,8 +58,6 @@ First we need to connect Snyk to GitHub so we can import our Repository. Do so b
 
 ![alt tag](https://i.ibb.co/bPqqybM/snyk-starter-open-source-1.png)
 
-<br />
-
 # Snyk Code Steps
 
 Snyk Code is developer-first, embedding SAST as part of the development process, enabling developers to build software securely during development, not trying to find and fix problems after the code is compiled. Snyk Code works in the IDEs and SCMs developers use to build and review software and provides fast, actionable, meaningful results to fix issues in real-time
@@ -120,7 +118,94 @@ Snyk products all provide a developer-friendly experience, so Snyk Code helps de
 
 ## Step 5 Run a Snyk Code CLI Test
 
-TODO://
+In addition to the Snyk App UI we also have, snyk - CLI a build-time tool to find & fix known vulnerabilities in open-source dependencies, IaC configuration files and SAST scans on the source code files itself (Snyk Code).
+
+* Before we get started please make sure you have setup the Snyk CLI. There are various install options as per the links below. Using the prebuilt binaries means you don't have to install NPM to install the Snyk CLI.
+
+1. Install Page - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
+2. Prebuilt Binaries - https://github.com/snyk/snyk/releases
+3. 
+_Note: Please ensure you have the latest version of the Snyk CLI installed a version equal to or greater than the version below_
+
+```bash
+$ snyk --version
+1.801.0
+```
+
+* Authorize the Snyk CLI with your account as follows
+
+```bash
+$ snyk auth
+
+Now redirecting you to our auth page, go ahead and log in,
+and once the auth is complete, return to this prompt and you'll
+be ready to start using snyk.
+
+If you can't wait use this url:
+https://snyk.io/login?token=ff75a099-4a9f-4b3d-b75c-bf9847672e9c&utm_medium=cli&utm_source=cli&utm_campaign=cli&os=darwin&docker=false
+
+Your account has been authenticated. Snyk is now ready to be used.
+```
+
+* Clone your forked repository as shown below. You can use your own GitHub forked repo here instead of the one shown below if you like
+
+```shell
+$ git clone https://github.com/JennySnyk/juice-shop
+Cloning into 'juice-shop'...
+remote: Enumerating objects: 94967, done.
+remote: Counting objects: 100% (17/17), done.
+remote: Compressing objects: 100% (13/13), done.
+remote: Total 94967 (delta 5), reused 13 (delta 4), pack-reused 94950
+Receiving objects: 100% (94967/94967), 157.66 MiB | 10.35 MiB/s, done.
+Resolving deltas: 100% (72676/72676), done.
+```
+
+* Change to the "**juice-shop**" directory
+
+```shell
+$ cd juice-shop
+```
+
+* At this point let's go ahead and run our first "**snyk code test**" as shown below
+
+```shell
+$ snyk code test
+
+Testing /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop ...
+
+ ✗ [Low] Cleartext Transmission of Sensitive Information
+     Path: test/e2eSubfolder.js, line 7
+     Info: http (used in require) is an insecure protocol and should not be used in new code.
+
+ ✗ [Low] Cleartext Transmission of Sensitive Information
+     Path: test/api/productReviewApiSpec.js, line 9
+     Info: http (used in require) is an insecure protocol and should not be used in new code.
+
+...
+
+ ✗ [High] Server-Side Request Forgery (SSRF)
+     Path: routes/profileImageUrlUpload.js, line 19
+     Info: Unsanitized input from the HTTP request body flows into request.get, where it is used as an URL to perform a request. This may result in a Server-Side Request Forgery vulnerability.
+
+ ✗ [High] Server-Side Request Forgery (SSRF)
+     Path: frontend/src/app/Services/configuration.service.ts, line 111
+     Info: Unsanitized input from data from a remote resource flows into get, where it is used as an URL to perform a request. This may result in a Server-Side Request Forgery vulnerability.
+
+ ✗ [High] Improper Neutralization of Directives in Statically Saved Code
+     Path: routes/userProfile.js, line 46
+     Info: Unsanitized input from cookies flows into pug.compile, where it is used to construct a template that gets rendered. This may result in a Server-Side Template Injection vulnerability.
+
+
+✔ Test completed
+
+Organization:      undefined
+Test type:         Static code analysis
+Project path:      /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop
+
+199 Code issues found
+25 [High]  17 [Medium]  157 [Low]
+
+```
 
 ### To Go Further with Snyk Code - Snyk Code workshop
 
@@ -182,7 +267,72 @@ Snyk integrates with your preferred Git repository to scan your manifest files f
 
 ### Step 8 Run a Snyk CLI Test
 
-TODO://
+In addition to the Snyk App UI we also have, snyk - CLI and build-time tool to find & fix known vulnerabilities in open-source dependencies. The CLI is what is used in DevOps pipelines to introduce Application Security Scans as part of that workflow to push applications into production.
+
+* Before we get started please make sure you have setup the Snyk CLI. There are various install options as per the links below. Using the prebuilt binaries means you don't have to install NPM to install the Snyk CLI.
+
+1. Install Page - https://support.snyk.io/hc/en-us/articles/360003812538-Install-the-Snyk-CLI
+1. Prebuilt Binaries - https://github.com/snyk/snyk/releases
+
+* In order to run a Snyk CLI test we must install the npm packages so if you have npm in your path you can install them as follows
+
+```shell
+$ npm install
+```
+
+_Note: If you don't have npm installed this you can skip this final step as a "snyk test" will not work without a **package-lock.json** file or the "**node_modules**" folder_
+
+* Once npm is installed run a Snyk CLI test as follows
+
+```shell
+❯ snyk test --all-projects
+
+Testing /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop...
+
+Tested 898 dependencies for known issues, found 37 issues, 52 vulnerable paths.
+
+
+Issues to fix by upgrading:
+
+  Upgrade concurrently@5.3.0 to concurrently@6.0.0 to fix
+  ✗ Regular Expression Denial of Service (ReDoS) [High Severity][https://snyk.io/vuln/SNYK-JS-ANSIREGEX-1583908] in ansi-regex@4.1.0
+    introduced by concurrently@5.3.0 > yargs@13.3.2 > string-width@3.1.0 > strip-ansi@5.2.0 > ansi-regex@4.1.0 and 8 other path(s)
+
+  Upgrade express-jwt@0.1.3 to express-jwt@6.0.0 to fix
+  ✗ Regular Expression Denial of Service (ReDoS) [Low Severity][https://snyk.io/vuln/npm:moment:20170905] in moment@2.0.0
+    introduced by express-jwt@0.1.3 > jsonwebtoken@0.1.0 > moment@2.0.0
+    
+...
+
+  ✗ Use After Free [High Severity][https://snyk.io/vuln/SNYK-JS-NODESASS-541000] in node-sass@4.14.1
+    introduced by node-sass@4.14.1
+  No upgrade or patch available
+  ✗ Out-of-bounds Read [Medium Severity][https://snyk.io/vuln/SNYK-JS-NODESASS-541002] in node-sass@4.14.1
+    introduced by node-sass@4.14.1
+  No upgrade or patch available
+
+
+License issues:
+
+  ✗ GPL-3.0 license (new) [High Severity][https://snyk.io/vuln/snyk:lic:npm:qrious:GPL-3.0] in qrious@4.0.2
+    introduced by anuglar2-qrcode@2.0.9998 > qrious@4.0.2
+
+
+
+Organization:      pas.apicella-41p
+Package manager:   npm
+Target file:       frontend/package.json
+Project name:      frontend
+Open source:       no
+Project path:      /Users/pasapicella/snyk/SE/workshops/SCA-SAST-workshop/juice-shop
+Licenses:          enabled
+
+Tip: Run `snyk wizard` to address these issues.
+
+
+Tested 2 projects, 2 contained vulnerable paths.
+
+```
 
 ### To Go Further with Snyk Open Source - Snyk Open Source workshop
 
